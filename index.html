@@ -26,15 +26,16 @@
             }
         }
 
+        let playerWon = false;
+        let computerWon = false;
+
         function playRound(playerSelection, computerSelection) {
             let response = "";
-            let playerWon = false;
-            let computerWon = false;
 
             switch (true) {
 
                 case playerSelection === computerSelection:
-                    response = "tie!"
+                    response = "tie!";
                     playerWon = false;
                     computerWon = false;
                     break;
@@ -84,12 +85,11 @@
         }
 
 
-        const playerSelection = "paper";
+        let playerSelection = " ";
         const computerSelection = getComputerChoice();
         let playerPoints = 0;
         let computerPoints = 0;
 
-        console.log(playerSelection);
         console.log(computerSelection);
 
 
@@ -97,7 +97,8 @@
             for (let i = 0; i < 5; i++) {
                 playerSelection = prompt("Choose rock, paper, or scissors.");
 
-                playerSelection = playerSelection.toLowerCase;
+                playerSelection = playerSelection.toLowerCase();
+                console.log(playerSelection);
 
                 alert(playRound(playerSelection, computerSelection));
 
