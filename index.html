@@ -95,12 +95,23 @@
 
         function game() {
             for (let i = 0; i < 5; i++) {
-                playerSelection = prompt("choose rock, paper, or scissors.");
+                playerSelection = prompt("Choose rock, paper, or scissors.");
 
                 playerSelection = playerSelection.toLowerCase;
+
                 alert(playRound(playerSelection, computerSelection));
 
+                if (playerWon == true) {
+                    playerPoints++;
+                }
+                else if (computerWon == true) {
+                    computerPoints++;
+                }
+                else {
 
+                }
+
+                alert(`Player has ${playerPoints} points. Computer has ${computerPoints} points.`);
 
 
             }
