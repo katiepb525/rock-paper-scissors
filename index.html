@@ -28,35 +28,51 @@
 
         function playRound(playerSelection, computerSelection) {
             let response = "";
+            let playerWon = false;
+            let computerWon = false;
 
             switch (true) {
 
                 case playerSelection === computerSelection:
                     response = "tie!"
+                    playerWon = false;
+                    computerWon = false;
                     break;
 
                 case playerSelection === "rock" && computerSelection === "paper":
                     response = "you lose, paper beats rock!";
+                    playerWon = false;
+                    computerWon = true;
                     break;
 
                 case playerSelection === "paper" && computerSelection === "rock":
                     response = "you win, paper beats rock!";
+                    playerWon = true;
+                    computerWon = false;
                     break;
 
                 case playerSelection === "paper" && computerSelection === "scissors":
                     response = "you lose, scissors beats paper!";
+                    playerWon = false;
+                    computerWon = true;
                     break;
 
                 case playerSelection === "scissors" && computerSelection === "paper":
                     response = "you win, scissors beats paper!";
+                    playerWon = true;
+                    computerWon = false;
                     break;
 
                 case playerSelection === "rock" && computerSelection === "scissors":
                     response = "you win, rock beats scissors!";
+                    playerWon = true;
+                    computerWon = false;
                     break;
 
                 case playerSelection === "scissors" && computerSelection === "rock":
                     response = "you lose, rock beats scissors!";
+                    playerWon = false;
+                    computerWon = true;
                     break;
 
                 default:
@@ -67,11 +83,31 @@
 
         }
 
+
         const playerSelection = "paper";
         const computerSelection = getComputerChoice();
+        let playerPoints = 0;
+        let computerPoints = 0;
+
         console.log(playerSelection);
         console.log(computerSelection);
-        console.log(playRound(playerSelection, computerSelection));
+
+
+        function game() {
+            for (let i = 0; i < 5; i++) {
+                playerSelection = prompt("choose rock, paper, or scissors.");
+
+                playerSelection = playerSelection.toLowerCase;
+                alert(playRound(playerSelection, computerSelection));
+
+
+
+
+            }
+
+        }
+
+
 
     </script>
 </body>
