@@ -6,122 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors</title>
+    <script src="script.js" defer></script>
 </head>
 
 <body>
-    <script>
-
-        function getComputerChoice() {
-            randomNum = Math.floor(Math.random() * 3);
-            switch (true) {
-                case randomNum == 0:
-                    return "rock";
-                    break;
-                case randomNum == 1:
-                    return "paper";
-                    break;
-                case randomNum == 2:
-                    return "scissors";
-                    break;
-            }
-        }
-
-        let playerWon = false;
-        let computerWon = false;
-
-        function playRound(playerSelection, computerSelection) {
-            let response = "";
-
-            switch (true) {
-
-                case playerSelection === computerSelection:
-                    response = "tie!";
-                    playerWon = false;
-                    computerWon = false;
-                    break;
-
-                case playerSelection === "rock" && computerSelection === "paper":
-                    response = "you lose, paper beats rock!";
-                    playerWon = false;
-                    computerWon = true;
-                    break;
-
-                case playerSelection === "paper" && computerSelection === "rock":
-                    response = "you win, paper beats rock!";
-                    playerWon = true;
-                    computerWon = false;
-                    break;
-
-                case playerSelection === "paper" && computerSelection === "scissors":
-                    response = "you lose, scissors beats paper!";
-                    playerWon = false;
-                    computerWon = true;
-                    break;
-
-                case playerSelection === "scissors" && computerSelection === "paper":
-                    response = "you win, scissors beats paper!";
-                    playerWon = true;
-                    computerWon = false;
-                    break;
-
-                case playerSelection === "rock" && computerSelection === "scissors":
-                    response = "you win, rock beats scissors!";
-                    playerWon = true;
-                    computerWon = false;
-                    break;
-
-                case playerSelection === "scissors" && computerSelection === "rock":
-                    response = "you lose, rock beats scissors!";
-                    playerWon = false;
-                    computerWon = true;
-                    break;
-
-                default:
-                    response = "uh oh. error?";
-                    break;
-            }
-            return response;
-
-        }
-
-
-        let playerSelection = " ";
-        const computerSelection = getComputerChoice();
-        let playerPoints = 0;
-        let computerPoints = 0;
-
-        console.log(computerSelection);
-
-
-        function game() {
-            for (let i = 0; i < 5; i++) {
-                playerSelection = prompt("Choose rock, paper, or scissors.");
-
-                playerSelection = playerSelection.toLowerCase();
-                console.log(playerSelection);
-
-                alert(playRound(playerSelection, computerSelection));
-
-                if (playerWon == true) {
-                    playerPoints++;
-                }
-                else if (computerWon == true) {
-                    computerPoints++;
-                }
-                else {
-
-                }
-
-                alert(`Player has ${playerPoints} points. Computer has ${computerPoints} points.`);
-
-
-            }
-
-        }
-
-
-
-    </script>
+    <h1>let's play.. rock paper scissors!</h1>
+    <button id="rock">rock</button>
+    <button id="paper">paper</button>
+    <button id="scissors">scissors</button>
 </body>
 
 </html>
