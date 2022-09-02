@@ -112,7 +112,7 @@ winImg.src = 'img/playerwon.jpg';
 
 // text to insert upon losing
 const winText = document.createElement('p');
-winText.textContent = "youuuuu win!!!"
+winText.textContent = "you win!!!!!!"
 
 // combine container, img, text in that order
 winContainer.appendChild(winImg);
@@ -135,28 +135,29 @@ loseText.textContent = "youuuuu loseeee...."
 loseContainer.appendChild(loseImg);
 loseContainer.appendChild(loseText);
 
-// find "winorlose"
-const winOrLose = document.querySelector(".winorlose")
+// find "winorlose" class of div
+const winOrLose = document.querySelector('.winOrLose')
 
+
+// announce the winner and add text
 function announceWinner() {
-    switch (true) {
-        case (computerPoints == 5):
-            computerPoints = 0;
-            playerPoints = 0;
-            console.log(`computer wins the game! click to play again.`);
-            winOrLose.appendChild(loseContainer);
-            break;
+    if (computerPoints == 5) {
+        console.log(`computer wins the game! click to play again.`);
+        computerPoints = 0;
+        playerPoints = 0;
+        winOrLose.appendChild(loseContainer);
 
-        case (playerPoints == 5):
-            computerPoints = 0;
-            playerPoints = 0;
-            console.log(`player wins the game! click to play again.`);
-            winOrLose.appendChild(winContainer);
-            break;
+    }
+    else if (playerPoints == 5) {
+        console.log(`player wins the game! click to play again.`);
+        computerPoints = 0;
+        playerPoints = 0;
+        winOrLose.appendChild(winContainer);
     }
 
-
 }
+
+
 
 // play a game of five rounds
 
