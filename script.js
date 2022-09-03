@@ -87,9 +87,6 @@ let computerSelection = getComputerChoice();
 let playerPoints = 0;
 let computerPoints = 0;
 
-// keep track if current round is the first game
-firstGame = false;
-
 // add computer or player points
 
 function addPoints() {
@@ -107,12 +104,17 @@ function addPoints() {
 
 //////////////////// DISPLAY OUTCOME OF CURRENT ROUND
 
+
+
 //////////////////// DISPLAY POINTS OF CURRENT ROUND
 const pointsText = document.createElement('p');
+
 const currentPoints = document.querySelector('.currentPoints')
+
 function updatePointsText() {
     pointsText.textContent = `player has ${playerPoints}. computer has ${computerPoints}.`;
 }
+
 currentPoints.appendChild(pointsText);
 
 //////////////////// DISPLAY RESULTS OF GAME (5 ROUNDS)
@@ -156,40 +158,45 @@ const winOrLose = document.querySelector('.winOrLose')
 // announce the winner and add text. make next game a new game.
 function announceWinner() {
     // if the computer wins...
-    if (computerPoints == 5) {
+    if (computerPoints > playerPoints) {
         // console.log(`computer wins the game! click to play again.`);
 
         // display losing screen..
         winOrLose.appendChild(loseContainer);
 
-        // check if winning screen is present, if so, remove..
-        if (winOrLose.querySelector('.winContainer')) {
-            winOrLose.removeChild(winContainer);
-        }
+        // // check if winning screen is present, if so, remove..
+        // if (winOrLose.querySelector('.winContainer')) {
+        //     winOrLose.removeChild(winContainer);
+        // }
 
-        // reset the points to zero..
-        computerPoints = 0;
-        playerPoints = 0;
+        // // reset the points to zero..
+        // computerPoints = 0;
+        // playerPoints = 0;
 
     }
 
     // if the player wins...
-    else if (playerPoints == 5) {
+    else if (playerPoints < computerPoints) {
         // console.log(`player wins the game! click to play again.`);
 
         // display winning screen..
         winOrLose.appendChild(winContainer);
 
-        // check if losing screen is present, if so, remove
-        if (winOrLose.querySelector('.loseContainer')) {
-            winOrLose.removeChild(loseContainer);
-        }
+        // // check if losing screen is present, if so, remove
+        // if (winOrLose.querySelector('.loseContainer')) {
+        //     winOrLose.removeChild(loseContainer);
+        // }
 
-        // reset the points to zero..
-        computerPoints = 0;
-        playerPoints = 0;
+        // reset points to zero..
+        // computerPoints = 0;
+        // playerPoints = 0;
     }
 
+    else if (playerPoints == computerPoints) {
+        //display tie screen..
+
+
+    }
 }
 
 
@@ -220,6 +227,27 @@ function announceWinner() {
 // }
 
 
+// check if lose or win displays are present and remove
+function removeContainer() {
+    if (winOrLose.querySelector('.loseContainer')) {
+        winOrLose.removeChild(loseContainer);
+    }
+    else if (winOrLose.querySelector('.winContainer')) {
+        winOrLose.removeChild(winContainer);
+    }
+    else { }
+
+}
+// keep track of number of current round
+let currentRound = 0;
+
+// check if the current session is a new game
+function isNewGame() {
+    if (currentRound == 0) {
+        return true;
+    }
+}
+
 // attach an event listener for each button
 const rockButton = document.querySelector('#rock');
 const scissorsButton = document.querySelector('#scissors');
@@ -228,25 +256,41 @@ const paperButton = document.querySelector('#paper');
 
 // play a game upon click of button. 
 rockButton.addEventListener('click', () => {
-    //keep track if the current session is a new game
-    // if (computerPoints == 1 || playerPoints == 1) {
-    //      newGame = true;
-    // append div that displays the score here vvv
-    // displayPoints.appendChild(pointDisplay)
-    // }
-    playerSelection = "rock";
-    computerSelection = getComputerChoice(); // randomize computer choice
-    console.log(playRound("rock", computerSelection));
-
-    updatePointsText();
-    addPoints();
-    // function to update message displaying current points
-    updatePointsText();
-    // keep track if the game has ended
-    if (computerPoints >= 5 || playerPoints >= 5) {
-        announceWinner();
-        newGame = false;
+    console.log(currentRound);
+    // for a new game, remove win/lose statements, tell player new game has started, skip adding points for one round
+    if (isNewGame() == true) {
+        updatePointsText();
+        console.log('new game started! lets rumble....')
+        removeContainer();
+        currentRound++;
     }
+    else if (currentRound >= 1 && currentRound <= 4) {
+        playerSelection = "rock"; // make player selection rock
+
+        computerSelection = getComputerChoice(); // randomize computer choice
+
+        console.log(playRound("rock", computerSelection)); // display result of who won in console
+
+        addPoints();
+
+        // function to update message displaying current points
+        updatePointsText();
+
+        // only update current round if there has been no tie..
+        if (!(playerWon == false && computerWon == false)) {
+            currentRound++
+        }
+
+    }
+    // if the game has ended...
+    else if (currentRound == 5) {
+        updatePointsText();
+        announceWinner();
+        currentRound = 0;
+        computerPoints = 0;
+        playerPoints = 0;
+    }
+
 })
 
 scissorsButton.addEventListener('click', () => {
