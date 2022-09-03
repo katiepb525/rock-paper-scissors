@@ -252,7 +252,9 @@ function removeContainer() {
     else if (winOrLose.querySelector('.winContainer')) {
         winOrLose.removeChild(winContainer);
     }
-    else if (win{ }
+    else if (winOrLose.querySelector('.tieContainer')) {
+        winOrLose.removeChild(tieContainer);
+    }
 
 }
 // keep track of number of current round
