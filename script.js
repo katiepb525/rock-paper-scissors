@@ -117,7 +117,7 @@ function updatePointsText() {
 
 currentPoints.appendChild(pointsText);
 
-//////////////////// DISPLAY RESULTS OF GAME (5 ROUNDS)
+/////////////////// WIN DISPLAY
 // container to hold win image + text
 const winContainer = document.createElement('div');
 winContainer.classList.add('winContainer');
@@ -155,7 +155,7 @@ loseContainer.appendChild(loseText);
 const winOrLose = document.querySelector('.winOrLose')
 
 
-// announce the winner and add text. make next game a new game.
+//////////////////// ANNOUNCE WINNER OF GAME (5 ROUNDS)
 function announceWinner() {
     // if the computer wins...
     if (computerPoints > playerPoints) {
