@@ -158,7 +158,7 @@ tieContainer.classList.add('tieContainer');
 
 // img to insert upon losing
 const tieImg = document.createElement('img');
-tieImg.src = 'img/playertie.jpg';
+tieImg.src = 'img/playertie.png';
 
 // text to insert upon losing
 const tieText = document.createElement('p');
@@ -168,12 +168,8 @@ tieText.textContent = "um... a tie!"
 tieContainer.appendChild(tieImg);
 tieContainer.appendChild(tieText);
 
-
-
-
-// find "winorlose" to store result in
+/////////// find "winorlose" to store result in
 const winOrLose = document.querySelector('.winOrLose')
-
 
 
 //////////////////// ANNOUNCE WINNER OF GAME (5 ROUNDS)
@@ -215,7 +211,7 @@ function announceWinner() {
 
     else if (playerPoints == computerPoints) {
         //display tie screen..
-
+        winOrLose.appendChild(tieContainer);
 
     }
 }
@@ -256,7 +252,7 @@ function removeContainer() {
     else if (winOrLose.querySelector('.winContainer')) {
         winOrLose.removeChild(winContainer);
     }
-    else { }
+    else if (win{ }
 
 }
 // keep track of number of current round
