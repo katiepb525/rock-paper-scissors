@@ -151,8 +151,29 @@ loseText.textContent = "youuuuu loseeee...."
 loseContainer.appendChild(loseImg);
 loseContainer.appendChild(loseText);
 
-// find "winorlose" class of div
+////////////////////TIE DISPLAY
+// container to hold tie image + text
+const tieContainer = document.createElement('div');
+tieContainer.classList.add('tieContainer');
+
+// img to insert upon losing
+const tieImg = document.createElement('img');
+tieImg.src = 'img/playertie.jpg';
+
+// text to insert upon losing
+const tieText = document.createElement('p');
+tieText.textContent = "um... a tie!"
+
+// combine container, img, text in that order
+tieContainer.appendChild(tieImg);
+tieContainer.appendChild(tieText);
+
+
+
+
+// find "winorlose" to store result in
 const winOrLose = document.querySelector('.winOrLose')
+
 
 
 //////////////////// ANNOUNCE WINNER OF GAME (5 ROUNDS)
