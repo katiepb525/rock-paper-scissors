@@ -19,11 +19,12 @@ function getComputerChoice() {
 
 let playerWon = false;
 let computerWon = false;
+let response = "";
 
 // play a round!
 
 function playRound(playerSelection, computerSelection) {
-    let response = "";
+
 
     switch (true) {
 
@@ -86,6 +87,8 @@ let computerSelection = getComputerChoice();
 let playerPoints = 0;
 let computerPoints = 0;
 
+// keep track if current round is the first game
+firstGame = false;
 
 // add computer or player points
 
@@ -102,6 +105,17 @@ function addPoints() {
     }
 }
 
+//////////////////// DISPLAY OUTCOME OF CURRENT ROUND
+
+//////////////////// DISPLAY POINTS OF CURRENT ROUND
+const pointsText = document.createElement('p');
+const currentPoints = document.querySelector('.currentPoints')
+function updatePointsText() {
+    pointsText.textContent = `player has ${playerPoints}. computer has ${computerPoints}.`;
+}
+currentPoints.appendChild(pointsText);
+
+//////////////////// DISPLAY RESULTS OF GAME (5 ROUNDS)
 // container to hold win image + text
 const winContainer = document.createElement('div');
 winContainer.classList.add('container');
@@ -112,13 +126,13 @@ winImg.src = 'img/playerwon.jpg';
 
 // text to insert upon losing
 const winText = document.createElement('p');
-winText.textContent = "you win!!!!!!"
+winText.textContent = "you win!!!!!!";
 
 // combine container, img, text in that order
 winContainer.appendChild(winImg);
 winContainer.appendChild(winText);
 
-////////////////////
+////////////////////LOSE DISPLAY
 // container to hold lose image + text
 const loseContainer = document.createElement('div');
 loseContainer.classList.add('container');
@@ -139,7 +153,7 @@ loseContainer.appendChild(loseText);
 const winOrLose = document.querySelector('.winOrLose')
 
 
-// announce the winner and add text
+// announce the winner and add text. make next game a new game.
 function announceWinner() {
     if (computerPoints == 5) {
         console.log(`computer wins the game! click to play again.`);
@@ -153,6 +167,7 @@ function announceWinner() {
         computerPoints = 0;
         playerPoints = 0;
         winOrLose.appendChild(winContainer);
+
     }
 
 }
@@ -191,14 +206,26 @@ const scissorsButton = document.querySelector('#scissors');
 const paperButton = document.querySelector('#paper');
 
 
-// play a game upon click of button
+// play a game upon click of button. 
 rockButton.addEventListener('click', () => {
+    //keep track if the current session is a new game
+    // if (computerPoints == 1 || playerPoints == 1) {
+    //      newGame = true;
+    // append div that displays the score here vvv
+    // displayPoints.appendChild(pointDisplay)
+    // }
+    playerSelection = "rock";
     computerSelection = getComputerChoice(); // randomize computer choice
     console.log(playRound("rock", computerSelection));
+
+    updatePointsText();
     addPoints();
-    console.log(`player has ${playerPoints}. computer has ${computerPoints}`);
+    // function to update message displaying current points
+    updatePointsText();
+    // keep track if the game has ended
     if (computerPoints >= 5 || playerPoints >= 5) {
         announceWinner();
+        newGame = false;
     }
 })
 
