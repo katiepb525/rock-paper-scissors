@@ -118,7 +118,7 @@ currentPoints.appendChild(pointsText);
 //////////////////// DISPLAY RESULTS OF GAME (5 ROUNDS)
 // container to hold win image + text
 const winContainer = document.createElement('div');
-winContainer.classList.add('container');
+winContainer.classList.add('winContainer');
 
 // img to insert upon losing
 const winImg = document.createElement('img');
@@ -135,7 +135,7 @@ winContainer.appendChild(winText);
 ////////////////////LOSE DISPLAY
 // container to hold lose image + text
 const loseContainer = document.createElement('div');
-loseContainer.classList.add('container');
+loseContainer.classList.add('loseContainer');
 
 // img to insert upon losing
 const loseImg = document.createElement('img');
@@ -155,19 +155,39 @@ const winOrLose = document.querySelector('.winOrLose')
 
 // announce the winner and add text. make next game a new game.
 function announceWinner() {
+    // if the computer wins...
     if (computerPoints == 5) {
-        console.log(`computer wins the game! click to play again.`);
-        computerPoints = 0;
-        playerPoints = 0;
+        // console.log(`computer wins the game! click to play again.`);
+
+        // display losing screen..
         winOrLose.appendChild(loseContainer);
 
-    }
-    else if (playerPoints == 5) {
-        console.log(`player wins the game! click to play again.`);
+        // check if winning screen is present, if so, remove..
+        if (winOrLose.querySelector('.winContainer')) {
+            winOrLose.removeChild(winContainer);
+        }
+
+        // reset the points to zero..
         computerPoints = 0;
         playerPoints = 0;
+
+    }
+
+    // if the player wins...
+    else if (playerPoints == 5) {
+        // console.log(`player wins the game! click to play again.`);
+
+        // display winning screen..
         winOrLose.appendChild(winContainer);
 
+        // check if losing screen is present, if so, remove
+        if (winOrLose.querySelector('.loseContainer')) {
+            winOrLose.removeChild(loseContainer);
+        }
+
+        // reset the points to zero..
+        computerPoints = 0;
+        playerPoints = 0;
     }
 
 }
