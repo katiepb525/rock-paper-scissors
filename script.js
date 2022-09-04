@@ -182,7 +182,7 @@ const finalWinner = document.querySelector('.finalWinner')
 ////////////////DISPLAY TEXT FOR NEW GAME
 const newGameText = document.createElement('p');
 
-const newGameBody = document.querySelector('.showNewGame')
+const newGameBody = document.querySelector('.showNewGame');
 
 function updateNewGame() {
     newGameText.textContent = `new game.... lets begin!!!`;
