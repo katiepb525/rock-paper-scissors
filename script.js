@@ -170,6 +170,16 @@ tieContainer.appendChild(tieText);
 
 /////////// find "winorlose" to store result in
 const winOrLose = document.querySelector('.winOrLose')
+////////////////DISPLAY TEXT FOR NEW GAME
+const newGameText = document.createElement('p');
+
+const newGameBody = document.querySelector('.showNewGame')
+
+function updateNewGame() {
+    newGameText.textContent = `new game.... lets begin!!!`;
+}
+
+newGameBody.appendChild(newGameText);
 
 
 //////////////////// ANNOUNCE WINNER OF GAME (5 ROUNDS)
