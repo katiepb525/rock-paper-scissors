@@ -283,40 +283,92 @@ function removeContainer() {
 // keep track of number of current round
 let currentRound = 0;
 
-// check if the current session is a new game
-function isNewGame() {
-    if (currentRound == 0) {
-        return true;
-    }
-}
 
-// attach an event listener for each button
-const rockButton = document.querySelector('#rock');
-const scissorsButton = document.querySelector('#scissors');
-const paperButton = document.querySelector('#paper');
+// for (currentRound = 0; currentround < 5; currentRound++) {
+//     switch (true) {
+
+//         case (currentRound == 0):
+//             updatePointsText();
+//             updateNewGame();
+//             theBody.appendChild(newGameBody);
+//             // console.log('new game started! lets rumble....')
+//             removeContainer();
+//             currentRound++;
+//             break;
+
+//         case (currentRound >= 1 && currentRound <= 4):
+//             if (currentRound == 1) {
+//                 theBody.appendChild(currentOutcome);
+//                 theBody.removeChild(newGameBody);
+//             }
+
+//             playerSelection = ; // make player selection whichever option
+
+//             computerSelection = getComputerChoice(); // randomize computer choice
+
+//             playRound(playerSelection, computerSelection);
+//             addPoints();
+
+//             // function to update outcome of round text
+//             updateOutcomeText();
+
+//             // function to update message displaying current points
+//             updatePointsText();
 
 
-// play a game upon click of button. 
-rockButton.addEventListener('click', () => {
+//             // only update current round if there has been no tie..
+//             if (!(playerWon == false && computerWon == false)) {
+//                 currentRound++
+//             }
+//             break;
+
+//         case (currentRound == 5):
+//             updatePointsText();
+//             updateOutcomeText();
+//             announceWinner();
+//             currentRound = 0;
+//             computerPoints = 0;
+//             playerPoints = 0;
+//             theBody.removeChild(currentOutcome);
+//             break;
+//     }
+// }
+
+
+function onClick(selection) {
     console.log(currentRound);
+
     // for a new game, remove win/lose statements, tell player new game has started, skip adding points for one round
-    if (isNewGame() == true) {
+    if (currentRound == 0) {
         updatePointsText();
-        console.log('new game started! lets rumble....')
+        updateNewGame();
+        theBody.appendChild(newGameBody);
+        // console.log('new game started! lets rumble....')
         removeContainer();
         currentRound++;
     }
     else if (currentRound >= 1 && currentRound <= 4) {
-        playerSelection = "rock"; // make player selection rock
+        if (currentRound == 1) {
+            if (document.querySelector('.showNewGame')) {
+                theBody.removeChild(newGameBody);
+                console.log('hello')
+            }
+            theBody.appendChild(currentOutcome);
+        }
+
+        playerSelection = selection; // make player selection whichever option
 
         computerSelection = getComputerChoice(); // randomize computer choice
 
-        console.log(playRound("rock", computerSelection)); // display result of who won in console
-
+        playRound(playerSelection, computerSelection);
         addPoints();
+
+        // function to update outcome of round text
+        updateOutcomeText();
 
         // function to update message displaying current points
         updatePointsText();
+
 
         // only update current round if there has been no tie..
         if (!(playerWon == false && computerWon == false)) {
@@ -327,31 +379,32 @@ rockButton.addEventListener('click', () => {
     // if the game has ended...
     else if (currentRound == 5) {
         updatePointsText();
+        updateOutcomeText();
         announceWinner();
         currentRound = 0;
         computerPoints = 0;
         playerPoints = 0;
+        theBody.removeChild(currentOutcome);
     }
+}
 
+
+// attach an event listener for each button
+const rockButton = document.querySelector('#rock');
+const scissorsButton = document.querySelector('#scissors');
+const paperButton = document.querySelector('#paper');
+
+
+// play a game upon click of button. 
+rockButton.addEventListener('click', () => {
+    onClick("rock");
 })
 
 scissorsButton.addEventListener('click', () => {
-    computerSelection = getComputerChoice(); // randomize computer choice
-    console.log(playRound("scissors", computerSelection));
-    addPoints();
-    console.log(`player has ${playerPoints}. computer has ${computerPoints}`);
-    if (computerPoints >= 5 || playerPoints >= 5) {
-        announceWinner();
-    }
+    onClick("scissors");
 
 })
 
 paperButton.addEventListener('click', () => {
-    computerSelection = getComputerChoice(); // randomize computer choice
-    console.log(playRound("paper", computerSelection));
-    addPoints();
-    console.log(`player has ${playerPoints}. computer has ${computerPoints}`);
-    if (computerPoints >= 5 || playerPoints >= 5) {
-        announceWinner();
-    }
+    onClick("paper");
 })
