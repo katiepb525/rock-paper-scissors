@@ -263,6 +263,9 @@ function announceWinner() {
 // }
 
 
+// select the body
+theBody = document.querySelector('body');
+
 // check if lose or win displays are present and remove
 function removeContainer() {
     if (winOrLose.querySelector('.loseContainer')) {
