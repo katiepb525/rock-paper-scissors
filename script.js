@@ -102,9 +102,16 @@ function addPoints() {
     }
 }
 
-//////////////////// DISPLAY OUTCOME OF CURRENT ROUND
+//////////////////// DISPLAY IF PLAYER WON OR LOST CURRENT ROUND
+const outcomeText = document.createElement('p');
 
+const currentOutcome = document.querySelector('.currentOutcome');
 
+function updateOutcomeText() {
+    outcomeText.textContent = wonOrLostOrTie;
+}
+
+currentOutcome.appendChild(outcomeText);
 
 //////////////////// DISPLAY POINTS OF CURRENT ROUND
 const pointsText = document.createElement('p');
@@ -145,7 +152,7 @@ loseImg.src = 'img/playerlost.jpg';
 
 // text to insert upon losing
 const loseText = document.createElement('p');
-loseText.textContent = "youuuuu loseeee...."
+loseText.textContent = " youuuuu loseeee...."
 
 // combine container, img, text in that order
 loseContainer.appendChild(loseImg);
@@ -189,11 +196,11 @@ function announceWinner() {
         // console.log(`computer wins the game! click to play again.`);
 
         // display losing screen..
-        winOrLose.appendChild(loseContainer);
+        finalWinner.appendChild(loseContainer);
 
         // // check if winning screen is present, if so, remove..
-        // if (winOrLose.querySelector('.winContainer')) {
-        //     winOrLose.removeChild(winContainer);
+        // if (finalWinner.querySelector('.winContainer')) {
+        //     finalWinner.removeChild(winContainer);
         // }
 
         // // reset the points to zero..
@@ -203,15 +210,15 @@ function announceWinner() {
     }
 
     // if the player wins...
-    else if (playerPoints < computerPoints) {
+    else if (playerPoints > computerPoints) {
         // console.log(`player wins the game! click to play again.`);
 
         // display winning screen..
-        winOrLose.appendChild(winContainer);
+        finalWinner.appendChild(winContainer);
 
         // // check if losing screen is present, if so, remove
-        // if (winOrLose.querySelector('.loseContainer')) {
-        //     winOrLose.removeChild(loseContainer);
+        // if (finalWinner.querySelector('.loseContainer')) {
+        //     finalWinner.removeChild(loseContainer);
         // }
 
         // reset points to zero..
@@ -221,7 +228,7 @@ function announceWinner() {
 
     else if (playerPoints == computerPoints) {
         //display tie screen..
-        winOrLose.appendChild(tieContainer);
+        finalWinner.appendChild(tieContainer);
 
     }
 }
