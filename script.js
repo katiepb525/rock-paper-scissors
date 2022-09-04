@@ -19,7 +19,7 @@ function getComputerChoice() {
 
 let playerWon = false;
 let computerWon = false;
-let response = "";
+let wonOrLostOrTie = "";
 
 // play a round!
 
@@ -31,52 +31,52 @@ function playRound(playerSelection, computerSelection) {
         // optimize code to be conditional on playerselection... break up this giant function into something smaller
 
         case playerSelection === computerSelection:
-            response = "tie!";
+            wonOrLostOrTie = "tie!";
             playerWon = false;
             computerWon = false;
             break;
 
         case playerSelection === "rock" && computerSelection === "paper":
-            response = "you lose, paper beats rock!";
+            wonOrLostOrTie = "you lose, paper beats rock!";
             playerWon = false;
             computerWon = true;
             break;
 
         case playerSelection === "paper" && computerSelection === "rock":
-            response = "you win, paper beats rock!";
+            wonOrLostOrTie = "you win, paper beats rock!";
             playerWon = true;
             computerWon = false;
             break;
 
         case playerSelection === "paper" && computerSelection === "scissors":
-            response = "you lose, scissors beats paper!";
+            wonOrLostOrTie = "you lose, scissors beats paper!";
             playerWon = false;
             computerWon = true;
             break;
 
         case playerSelection === "scissors" && computerSelection === "paper":
-            response = "you win, scissors beats paper!";
+            wonOrLostOrTie = "you win, scissors beats paper!";
             playerWon = true;
             computerWon = false;
             break;
 
         case playerSelection === "rock" && computerSelection === "scissors":
-            response = "you win, rock beats scissors!";
+            wonOrLostOrTie = "you win, rock beats scissors!";
             playerWon = true;
             computerWon = false;
             break;
 
         case playerSelection === "scissors" && computerSelection === "rock":
-            response = "you lose, rock beats scissors!";
+            wonOrLostOrTie = "you lose, rock beats scissors!";
             playerWon = false;
             computerWon = true;
             break;
 
         default:
-            response = "uh oh. error?";
+            wonOrLostOrTie = "uh oh. error?";
             break;
     }
-    return response;
+    // return response;
 
 }
 
