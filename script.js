@@ -175,8 +175,10 @@ tieText.textContent = "um... a tie!"
 tieContainer.appendChild(tieImg);
 tieContainer.appendChild(tieText);
 
-/////////// find "winorlose" to store result in
-const winOrLose = document.querySelector('.winOrLose')
+/////////// find "finalWinner" to store result in
+const finalWinner = document.querySelector('.finalWinner')
+
+
 ////////////////DISPLAY TEXT FOR NEW GAME
 const newGameText = document.createElement('p');
 
