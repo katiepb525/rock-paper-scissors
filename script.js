@@ -268,14 +268,14 @@ theBody = document.querySelector('body');
 
 // check if lose or win displays are present and remove
 function removeContainer() {
-    if (winOrLose.querySelector('.loseContainer')) {
-        winOrLose.removeChild(loseContainer);
+    if (finalWinner.querySelector('.loseContainer')) {
+        finalWinner.removeChild(loseContainer);
     }
-    else if (winOrLose.querySelector('.winContainer')) {
-        winOrLose.removeChild(winContainer);
+    else if (finalWinner.querySelector('.winContainer')) {
+        finalWinner.removeChild(winContainer);
     }
-    else if (winOrLose.querySelector('.tieContainer')) {
-        winOrLose.removeChild(tieContainer);
+    else if (finalWinner.querySelector('.tieContainer')) {
+        finalWinner.removeChild(tieContainer);
     }
 
 }
